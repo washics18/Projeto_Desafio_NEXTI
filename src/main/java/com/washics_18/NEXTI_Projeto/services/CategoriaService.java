@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.washics_18.NEXTI_Projeto.domain.Categoria;
+import com.washics_18.NEXTI_Projeto.exception.ObjectNotFoundException;
 import com.washics_18.NEXTI_Projeto.repositores.CategoriaRepository;
 
 
@@ -22,7 +23,7 @@ public class CategoriaService {
 		Optional<Categoria> obj = repo.findById(id);
 		
 				
-			return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado : id: " + id + " , Tipo: " + Categoria.class.getName()));
 		
 		
 		
