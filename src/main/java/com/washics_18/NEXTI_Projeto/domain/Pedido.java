@@ -95,11 +95,11 @@ public class Pedido implements Serializable{
 	}
 	
 
-	public Set<Pedido> getItens() {
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<Pedido> itens) {
+	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
 

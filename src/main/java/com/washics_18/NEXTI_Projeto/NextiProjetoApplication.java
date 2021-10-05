@@ -14,6 +14,9 @@ import com.washics_18.NEXTI_Projeto.domain.ItemPedido;
 import com.washics_18.NEXTI_Projeto.domain.Pedido;
 import com.washics_18.NEXTI_Projeto.domain.Produto;
 import com.washics_18.NEXTI_Projeto.repositores.CategoriaRepository;
+import com.washics_18.NEXTI_Projeto.repositores.ClienteRepository;
+import com.washics_18.NEXTI_Projeto.repositores.ItemPedidoRepository;
+import com.washics_18.NEXTI_Projeto.repositores.PedidoRepository;
 import com.washics_18.NEXTI_Projeto.repositores.ProdutoRepository;
 
 
@@ -25,6 +28,15 @@ public class NextiProjetoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private ClienteRepository  clienteRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(NextiProjetoApplication.class, args);
@@ -49,9 +61,37 @@ public class NextiProjetoApplication implements CommandLineRunner{
 		categoriaRepository.saveAll(Arrays.asList(cat1 , cat2));
 		produtoRepository.saveAll(Arrays.asList(prod1 , prod2 , prod3));
 		
-	
+		Cliente cli1 = new Cliente(null , "João Pedro" , "768634221" , "30/09/1996");
+		Cliente cli2 = new Cliente(null , "Elisa Souza" , "39876325" , "13/02/1990");
+		Cliente cli3 = new Cliente(null , "Maria Lima" , "26459720" , "21/12/1988");
 		
+		clienteRepository.saveAll(Arrays.asList(cli1 , cli2 , cli3));
 		
+         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("23/04/2021 10:32"), cli1, 1500.00 , prod1 );
+		Pedido ped2 = new Pedido(null, sdf.parse("11/02/2021 18:24"), cli2, 80.00 , prod3 );
+		Pedido ped3 = new Pedido(null, sdf.parse("06/07/2021 15:45"), cli3, 2000.00 , prod2 );
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1));
+		cli2.getPedidos().addAll(Arrays.asList(ped3));
+		cli2.getPedidos().addAll(Arrays.asList(ped2));
+		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2 , ped3));
+		
+		ItemPedido itemPed1 = new ItemPedido(ped1, prod1, 1, 1500.00);
+		ItemPedido itemPed2 = new ItemPedido(ped2, prod3, 1, 80.00);
+		ItemPedido itemPed3 = new ItemPedido(ped3, prod2, 1, 2000.00);
+		
+		ped1.getItens().addAll(Arrays.asList(itemPed1));
+		ped2.getItens().addAll(Arrays.asList(itemPed2));
+		ped3.getItens().addAll(Arrays.asList(itemPed3));
+		
+		prod1.getItens().addAll(Arrays.asList(itemPed1));
+		prod2.getItens().addAll(Arrays.asList(itemPed3));
+		prod3.getItens().addAll(Arrays.asList(itemPed2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(itemPed1,itemPed2,itemPed3));
 		
 		
 		

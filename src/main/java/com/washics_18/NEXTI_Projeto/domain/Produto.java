@@ -119,11 +119,11 @@ public class Produto implements Serializable {
 		this.categorias = categorias;
 	}
 	
-	public Set<Pedido> getItens() {
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<Pedido> itens) {
+	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
 
