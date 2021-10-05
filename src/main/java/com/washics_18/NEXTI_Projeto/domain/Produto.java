@@ -39,7 +39,9 @@ public class Produto implements Serializable {
 	inverseJoinColumns = @JoinColumn(name = "categoria_id")) // chave estrangeira da tabela categoria
 	private List<Categoria> categorias = new ArrayList<>();//relação um produto pode ter varias categorias.
 	
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="id.produto")
+	private Set<ItemPedido> itens = new HashSet<>();
 	
 	public Produto() {
 		
@@ -52,6 +54,15 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.quantidade = quantidade;
+	}
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		for(ItemPedido pedido : itens) {
+			lista.add(pedido.getPedido());
+		}
+		
+		return lista;
 	}
 
 	public Integer getId() {
@@ -108,7 +119,13 @@ public class Produto implements Serializable {
 		this.categorias = categorias;
 	}
 	
+	public Set<Pedido> getItens() {
+		return itens;
+	}
 
+	public void setItens(Set<Pedido> itens) {
+		this.itens = itens;
+	}
 
 	@Override
 	public int hashCode() {

@@ -1,5 +1,6 @@
 package com.washics_18.NEXTI_Projeto;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.washics_18.NEXTI_Projeto.domain.Categoria;
+import com.washics_18.NEXTI_Projeto.domain.Cliente;
+import com.washics_18.NEXTI_Projeto.domain.ItemPedido;
+import com.washics_18.NEXTI_Projeto.domain.Pedido;
 import com.washics_18.NEXTI_Projeto.domain.Produto;
 import com.washics_18.NEXTI_Projeto.repositores.CategoriaRepository;
 import com.washics_18.NEXTI_Projeto.repositores.ProdutoRepository;
@@ -44,6 +48,11 @@ public class NextiProjetoApplication implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1 , cat2));
 		produtoRepository.saveAll(Arrays.asList(prod1 , prod2 , prod3));
+		
+	
+		
+		
+		
 		
 		
 	}
