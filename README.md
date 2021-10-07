@@ -1,4 +1,4 @@
-# Big Game Survey 
+# Projeto_Desafio_NEXTI 
 [![NPM](https://img.shields.io/npm/l/react)](https://https://github.com/washics18/Projeto_Desafio_NEXTI/blob/master/LICENSE) 
 
 # Sobre o projeto
