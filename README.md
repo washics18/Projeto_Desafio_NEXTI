@@ -16,8 +16,6 @@ Projeto_Desafio_NEXTI uma aplicação consiste em uma compra de produtos dividid
 
 - Banco de dados: MySQL
 
-# Como executar o projeto
-
 # clonar repositório
 git clone https://github.com/washics18/Projeto_Desafio_NEXTI
 
