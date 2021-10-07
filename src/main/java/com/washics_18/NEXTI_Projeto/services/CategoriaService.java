@@ -10,20 +10,19 @@ import com.washics_18.NEXTI_Projeto.exception.ObjectNotFoundException;
 import com.washics_18.NEXTI_Projeto.repositores.CategoriaRepository;
 
 
-
 @Service
 public class CategoriaService {
 	
 	@Autowired
-	public CategoriaRepository repo; 
+	public CategoriaRepository repo; //acessa a camada repository
 	
-	
+	//metodo para buscar uma categoria por id
 	public Categoria buscar(Integer id) {
 		
 		Optional<Categoria> obj = repo.findById(id);
 		
 				
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado : id: " + id + " , Tipo: " + Categoria.class.getName()));
+			return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado : id: " + id + " , Tipo: " + Categoria.class.getName()));
 		
 		
 		

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,16 +27,15 @@ public class Pedido implements Serializable{
 	private Integer id;
 	
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private Date DataCompra;
+	private Date instante;
 	
-		
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	private double totalCompra;
-	
-	private Produto produto;
+	@ManyToOne
+	@JoinColumn(name="endereco_de_entrega_id")  //chave estrageira
+	private Endereco enderecoDeEntrega;
 	
 	@OneToMany(mappedBy="id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
@@ -43,13 +44,12 @@ public class Pedido implements Serializable{
 		
 	}
 
-	public Pedido(Integer id, Date DataCompra, Cliente cliente, double totalCompra , Produto produto) {
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
-		this.DataCompra = DataCompra;
+		this.instante = instante;
 		this.cliente = cliente;
-		this.totalCompra = totalCompra;
-		this.produto = produto;
+		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
 	public Integer getId() {
@@ -60,14 +60,14 @@ public class Pedido implements Serializable{
 		this.id = id;
 	}
 
-
-	public Date getDataCompra() {
-		return DataCompra;
+	public Date getInstante() {
+		return instante;
 	}
 
-	public void setDataCompra(Date dataCompra) {
-		DataCompra = dataCompra;
+	public void setInstante(Date instante) {
+		this.instante = instante;
 	}
+
 
 	public Cliente getCliente() {
 		return cliente;
@@ -77,24 +77,14 @@ public class Pedido implements Serializable{
 		this.cliente = cliente;
 	}
 
-
-	public double getTotalCompra() {
-		return totalCompra;
+	public Endereco getEnderecoDeEntrega() {
+		return enderecoDeEntrega;
 	}
 
-	public void setTotalCompra(double totalCompra) {
-		this.totalCompra = totalCompra;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
+		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 	
-
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
@@ -129,7 +119,9 @@ public class Pedido implements Serializable{
 	}
 
 	
+	
+	
+	
+	
 
 }
-
-

@@ -11,6 +11,7 @@ import com.washics_18.NEXTI_Projeto.domain.Pedido;
 import com.washics_18.NEXTI_Projeto.services.PedidoService;
 
 
+
 @RestController
 @RequestMapping(value="/pedidos")
 public class PedidoResource {
@@ -20,7 +21,7 @@ public class PedidoResource {
 	
 	
 	@RequestMapping(value="/{id}" , method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) { 
+	public ResponseEntity<?> find(@PathVariable Integer id) { //ResponseEntity<?> armazena varias informações de uma resposta http para serviço rest
 		
 		Pedido obj = service.buscar(id);
 		

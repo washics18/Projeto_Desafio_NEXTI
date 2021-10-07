@@ -1,53 +1,35 @@
 package com.washics_18.NEXTI_Projeto.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Categoria implements Serializable{
-
-
-	private static final long serialVersionUID = 1L;
+public class Cidade implements Serializable{
 	
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
-	@ManyToMany(mappedBy="categorias")  
-	private List<Produto> produtos = new ArrayList<>(); 
+	@ManyToOne
+	@JoinColumn(name="estado_id")
+	private Estado estado; // Cidade tem um estado
 	
-	public Categoria(){
+	public Cidade() {
 		
 	}
-	
-	
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-
-
-	public Categoria(Integer id, String nome) {
+	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -66,6 +48,14 @@ public class Categoria implements Serializable{
 		this.nome = nome;
 	}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,7 +72,7 @@ public class Categoria implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -90,6 +80,7 @@ public class Categoria implements Serializable{
 			return false;
 		return true;
 	}
-
+	
+	
 
 }

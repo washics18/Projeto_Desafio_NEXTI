@@ -2,8 +2,12 @@ package com.washics_18.NEXTI_Projeto.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,25 +26,32 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String cpf;
 	private String dataNascimento;
+	private String cpfOuCnpj;
 	
-		
+	@OneToMany(mappedBy="cliente")
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection 
+	@CollectionTable(name="TELEFONE")
+	private Set<String> telefones = new HashSet<>();//Set não permite repetição
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
+	
 	
 	
 	public Cliente() {
 		
 	}
 
-	public Cliente(Integer id, String nome, String cpf , String dataNascimento) {
+	public Cliente(Integer id, String nome, String dataNascimento, String cpfOuCnpj) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	public Integer getId() {
@@ -59,23 +70,38 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
-	
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getDataNascimento() {
+	public String getEmail() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setEmail(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
+	}
+
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
+	}
+	
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -113,6 +139,3 @@ public class Cliente implements Serializable {
 	
 	
 }
-
-
-

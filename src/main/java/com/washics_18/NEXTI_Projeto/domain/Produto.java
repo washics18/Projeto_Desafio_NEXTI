@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 public class Produto implements Serializable {
 	
@@ -27,9 +26,7 @@ public class Produto implements Serializable {
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String descricao;
-	private Double preco;
-	private Integer quantidade;
+	private Double price;
 	
 	
 	@JsonIgnore
@@ -47,22 +44,26 @@ public class Produto implements Serializable {
 		
 	}
 	
-	public Produto(Integer id, String nome, String descricao ,Double preco , Integer quantidade) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
-		this.quantidade = quantidade;
-	}
-	
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
+		
 		List<Pedido> lista = new ArrayList<>();
-		for(ItemPedido pedido : itens) {
-			lista.add(pedido.getPedido());
+		
+		for(ItemPedido itensPedido : itens){
+			
+			lista.add(itensPedido.getPedido());
 		}
 		
 		return lista;
+		
+		
+	}
+
+	public Produto(Integer id, String nome, Double price) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.price = price;
 	}
 
 	public Integer getId() {
@@ -81,36 +82,14 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-
-	public String getDescricao() {
-		return descricao;
+	public Double getPrice() {
+		return price;
 	}
 
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
-
-	public Double getPreco() {
-		return preco;
-	}
-
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
@@ -153,7 +132,7 @@ public class Produto implements Serializable {
 	}
 
 	
+	
+	
 
 }
-
-

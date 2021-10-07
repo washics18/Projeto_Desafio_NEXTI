@@ -8,5 +8,7 @@ import com.washics_18.NEXTI_Projeto.domain.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
+	 //JpaRepository acessar os dados do tipo que for passado ex: Categoria
+	 // CategoriaRepository realizar operações acessos a dados buscar , deletar , salvar , alterar. Objeto Categoria mapeado pela tabela categoria 
 
 }
