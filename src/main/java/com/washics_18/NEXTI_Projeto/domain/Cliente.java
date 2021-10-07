@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
 	
 	@ElementCollection 
 	@CollectionTable(name="TELEFONE")
-	private Set<String> telefones = new HashSet<>();//Set não permite repetição
+	private Set<String> telefones = new HashSet<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente")

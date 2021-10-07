@@ -15,9 +15,8 @@ import com.washics_18.NEXTI_Projeto.repositores.ClienteRepository;
 public class ClienteService {
 	
 	@Autowired
-	public ClienteRepository cliente; //acessa a camada repository
+	public ClienteRepository cliente; 
 	
-	//metodo para buscar uma cliente por id
 	public Cliente buscar(Integer id) {
 		
 		Optional<Cliente> obj = cliente.findById(id);

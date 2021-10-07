@@ -17,11 +17,11 @@ import com.washics_18.NEXTI_Projeto.services.PedidoService;
 public class PedidoResource {
 	
 	@Autowired
-	private PedidoService service; //acessa a camada serviços
+	private PedidoService service; 
 	
 	
 	@RequestMapping(value="/{id}" , method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) { //ResponseEntity<?> armazena varias informações de uma resposta http para serviço rest
+	public ResponseEntity<?> find(@PathVariable Integer id) { 
 		
 		Pedido obj = service.buscar(id);
 		

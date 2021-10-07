@@ -23,7 +23,7 @@ public class Estado implements Serializable {
 	private String nome;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy="estado")//atributo 
+	@ManyToMany(mappedBy="estado") 
 	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {

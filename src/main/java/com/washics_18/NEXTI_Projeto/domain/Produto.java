@@ -31,10 +31,10 @@ public class Produto implements Serializable {
 	
 	@JsonIgnore
 	@ManyToMany 
-	@JoinTable(name = "PRODUTO_CATEGORIA" , // a tabela que vai ficar entre categoria e produto ,faz a relaçao entre categoria e produto de muitos pra muitos , //mapeamento da List<Categoria>
-	joinColumns = @JoinColumn(name = "produto_id") , // chave estrangeira da tabela produto
-	inverseJoinColumns = @JoinColumn(name = "categoria_id")) // chave estrangeira da tabela categoria
-	private List<Categoria> categorias = new ArrayList<>();//relação um produto pode ter varias categorias.
+	@JoinTable(name = "PRODUTO_CATEGORIA" , 
+	joinColumns = @JoinColumn(name = "produto_id") , 
+	inverseJoinColumns = @JoinColumn(name = "categoria_id")) 
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="id.produto")

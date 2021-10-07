@@ -14,9 +14,8 @@ import com.washics_18.NEXTI_Projeto.repositores.CategoriaRepository;
 public class CategoriaService {
 	
 	@Autowired
-	public CategoriaRepository repo; //acessa a camada repository
+	public CategoriaRepository repo; 
 	
-	//metodo para buscar uma categoria por id
 	public Categoria buscar(Integer id) {
 		
 		Optional<Categoria> obj = repo.findById(id);

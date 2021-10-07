@@ -6,13 +6,13 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-//chave composta do ItemPedido
-@Embeddable //subTipo
+
+@Embeddable 
 public class ItemPedidoPK implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne // o pedido tem conhecer um pedido e um produto
+	@ManyToOne 
 	@JoinColumn(name="pedido_id")
 	private Pedido pedido;
 	

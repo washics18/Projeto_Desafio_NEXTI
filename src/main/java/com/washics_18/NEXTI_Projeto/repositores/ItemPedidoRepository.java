@@ -8,7 +8,5 @@ import com.washics_18.NEXTI_Projeto.domain.ItemPedido;
 
 @Repository
 public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Integer>{
-	 //JpaRepository acessar os dados do tipo que for passado ex: Categoria
-	 // CategoriaRepository realizar operações acessos a dados buscar , deletar , salvar , alterar. Objeto Categoria mapeado pela tabela categoria 
 
 }

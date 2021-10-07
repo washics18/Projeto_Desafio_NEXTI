@@ -15,9 +15,8 @@ import com.washics_18.NEXTI_Projeto.repositores.PedidoRepository;
 public class PedidoService {
 	
 	@Autowired
-	public PedidoRepository repo; //acessa a camada repository
+	public PedidoRepository repo; 
 	
-	//metodo para buscar uma categoria por id
 	public Pedido buscar(Integer id) {
 		
 		Optional<Pedido> obj = repo.findById(id);
